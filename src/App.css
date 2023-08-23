@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  height: 600px;
+  width: 400px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.ScheduleData {
+  margin-top: 50px;
+  height: 500px;
+  overflow-y: scroll;
+}

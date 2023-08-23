@@ -1,0 +1,48 @@
+.LiveCardContainer {
+  height: 80px;
+  margin: 3px;
+  border: 2px solid red;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  max-width: 400px;
+}
+
+.UpcomingCardContainer {
+  height: 80px;
+  margin: 3px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  max-width: 400px;
+}
+
+.Thumbnail {
+  margin-right: 5px;
+}
+
+img {
+  border-radius: 3px;
+}
+
+.InformationContainer p{
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 260px;
+}
+
+.Information {
+  margin: 0;
+  font-size: small;
+}
+
+.DetailContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

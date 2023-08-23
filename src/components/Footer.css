@@ -1,0 +1,28 @@
+.nunito {
+  font-family: 'Nunito', sans-serif;
+}
+
+.Footer {
+  background-color: #383434;
+  height: 50px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+}
+
+.Dropdown {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Label {
+  font-size: small !important;
+  color: aliceblue !important;
+}
+
+.MuiFormControl-root {
+  color: aliceblue !important;
+}
