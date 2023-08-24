@@ -5,10 +5,11 @@ import Card from "./components/Card";
 import Footer from "./components/Footer";
 import moment from "moment-timezone";
 import axios from "axios";
+import { ClipLoader } from "react-spinners";
 
 function App() {
   const [scheduleData, setScheduleData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [utcOffset, setUtcOffset] = useState("1");
 
   const getScheduleData = async () => {
@@ -55,7 +56,12 @@ function App() {
         <Header />
       </div>
       <div className="ScheduleData">
-        {!loading &&
+        {loading &&
+          <div className="Spinner">
+              <ClipLoader/>
+          </div>
+        } 
+        {!loading && 
           scheduleData.map((data, i) =>  (
             <Card data={data} utcOffset={utcOffset} live={true} key={i}/>
           ))

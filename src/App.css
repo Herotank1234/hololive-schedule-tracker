@@ -8,6 +8,14 @@
   border-radius: 5px;
 }
 
+.Spinner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .ScheduleData {
   margin-top: 50px;
   height: 500px;
