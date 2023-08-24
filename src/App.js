@@ -8,7 +8,8 @@ import axios from "axios";
 import { ClipLoader } from "react-spinners";
 
 function App() {
-  const [scheduleData, setScheduleData] = useState([]);
+  const [liveData, setLiveData] = useState([]);
+  const [upcomingData, setUpcomingData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [utcOffset, setUtcOffset] = useState("1");
 
@@ -24,28 +25,50 @@ function App() {
         }
       })
       .then((resp) => {
-        console.log(resp.data);
         return resp.data;
       });
 
-    const strippedData = respData.map((data) => {
-      return {
-        yt_video_key: data.id,
-        title: data.title,
-        thumbnail: `http://img.youtube.com/vi/${data.id}/0.jpg`,
-        live_schedule: moment(data.start_scheduled),
-        channel_name: data.channel.name,
+    let strippedLiveData = [];
+    let strippedUpcomingData = [];
+
+    respData.forEach(function(data) {
+      if(data.status === "live") {
+        strippedLiveData.push(
+          {
+            yt_video_key: data.id,
+            title: data.title,
+            thumbnail: `http://img.youtube.com/vi/${data.id}/0.jpg`,
+            live_schedule: moment(data.start_scheduled),
+            channel_name: data.channel.name
+          }
+        );
+      } else {
+        strippedUpcomingData.push(
+          {
+            yt_video_key: data.id,
+            title: data.title,
+            thumbnail: `http://img.youtube.com/vi/${data.id}/0.jpg`,
+            live_schedule: moment(data.start_scheduled),
+            channel_name: data.channel.name
+          }
+        )
       }
     });
+
+    const strippedData = {
+      live: strippedLiveData,
+      upcoming: strippedUpcomingData
+    };
 
     return strippedData;
   }
   
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getScheduleData()
     .then((data) => {
-      setScheduleData(data)
+      setLiveData(data.live);
+      setUpcomingData(data.upcoming);
       setLoading(false);
     });
   }, []);
@@ -62,8 +85,13 @@ function App() {
           </div>
         } 
         {!loading && 
-          scheduleData.map((data, i) =>  (
+          liveData.map((data, i) => (
             <Card data={data} utcOffset={utcOffset} live={true} key={i}/>
+          ))
+        }
+        {!loading && 
+          upcomingData.map((data, i) => (
+            <Card data={data} utcOffset={utcOffset} live={false} key={i}/>
           ))
         }
       </div>
