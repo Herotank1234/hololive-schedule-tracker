@@ -9,7 +9,7 @@ import { ClipLoader } from "react-spinners";
 
 function App() {
   const [scheduleData, setScheduleData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [utcOffset, setUtcOffset] = useState("1");
 
   const getScheduleData = async () => {
@@ -46,8 +46,8 @@ function App() {
     getScheduleData()
     .then((data) => {
       setScheduleData(data)
+      setLoading(false);
     });
-    setLoading(false)
   }, []);
 
   return (
