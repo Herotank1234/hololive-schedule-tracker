@@ -42,7 +42,7 @@ function App() {
   }
   
   useEffect(() => {
-    setLoading(true);
+    setLoading(true)
     getScheduleData()
     .then((data) => {
       setScheduleData(data)
